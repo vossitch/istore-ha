@@ -1,4 +1,9 @@
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    SensorEntity,
+    SensorStateClass,
+)
+from homeassistant.const import UnitOfTemperature
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import DOMAIN
 
@@ -42,6 +47,11 @@ class IStoreSensor(CoordinatorEntity, SensorEntity):
 
         # Unit
         self._attr_native_unit_of_measurement = unit
+
+        # Temperatures: device/state class so HA keeps long-term statistics
+        if unit == UnitOfTemperature.CELSIUS:
+            self._attr_device_class = SensorDeviceClass.TEMPERATURE
+            self._attr_state_class = SensorStateClass.MEASUREMENT
 
         # --- FIX: UNIQUE ID MUST DIFFER EVEN IF SAME KEY ---
         safe_key = key.lower().replace(".", "_")

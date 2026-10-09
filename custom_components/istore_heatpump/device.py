@@ -66,6 +66,5 @@ class IStoreDevice:
             model=modelId,
             serial_number=serial_number,
             connections=connections,
-            via_device=None,
             configuration_url=CONFIG_PAGE,
         )

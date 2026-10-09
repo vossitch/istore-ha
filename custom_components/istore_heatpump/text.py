@@ -35,7 +35,7 @@ class IStoreDeviceNameText(CoordinatorEntity, TextEntity):
         self._attr_name = "Device Name"
         self._attr_unique_id = f"istore_{api.mdm_id}_device_name"
         self._attr_icon = "mdi:rename-box"
-        self.entity_id = f"text.istore_{api.mdm_id}_name"
+        self.entity_id = f"text.istore_{api.mdm_id.lower()}_name"
         self._local_value = None
 
     @property
